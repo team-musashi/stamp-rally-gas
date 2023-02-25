@@ -217,6 +217,7 @@ class StampRallySpreadSheetAgent {
         imageUrl: rowValues[HEADER_NAME_R_IMAGE_URL].toString().trim(),
         startDate: new Date(rowValues[HEADER_NAME_R_START_DATE]),
         endDate: rowValues[HEADER_NAME_R_END_DATE] ? new Date(rowValues[HEADER_NAME_R_END_DATE]) : null,
+        route: [],
         createdAt: new Date(),
         updatedAt: new Date(),
       };

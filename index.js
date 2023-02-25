@@ -45,6 +45,7 @@ const SPREAD_SHEET_S_START_ROW = 1;
 // Firebase Firestore
 const COLLECTION_NAME_STAMP_RALLY = 'publicStampRally';
 const COLLECTION_NAME_SPOT = 'publicSpot';
+const COLLECTION_NAME_COMMAND = 'command'
 
 // スプレッドシートの公開スタンプラリーをアップロードする
 class StampRallyUploader {
@@ -121,6 +122,10 @@ class StampRallyUploader {
         spotRallyFirestoreAgent.updateSpotDocuments(stampRallyId, spots);
         this.logger.log('*** Firestore上の' + stampRallyId + 'の公開スポット ' + Object.keys(spots).length + ' 件を上書き保存中しました。');
       }
+
+      // スタンプラリー／スポット書込み完了後、経路算出コマンドを発行する
+      const commandFirestoreAgent = new CommandFirestoreAgent(firebaseAuth, COLLECTION_NAME_COMMAND)
+      commandFirestoreAgent.createCalculateRouteCommandDocuments(stampRallies)
 
       this.logger.log('*** アップロード処理が正常に完了しました。');
 
