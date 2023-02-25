@@ -25,8 +25,7 @@ class CommandFirestoreAgent {
             updatedAt: new Date()
         }
         // commandコレクションに経路算出コマンドドキュメントを新規追加
-        const path = this.commandCollectionName + '/' + id;
-        this.firestore.updateDocument(path, data, true);
+        this.firestore.createDocument(this.commandCollectionName, data);
       }
     }
   }
